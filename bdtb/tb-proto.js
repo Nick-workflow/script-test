@@ -15,13 +15,13 @@ const url = $request.url;
 const method = $request.method;
 const notifiTitle = "贴吧proto去广告脚本错误";
 const postMethod = "POST";
-let uint8Buffer = new Uint8Array($response.bodyBytes);
+let arrayBuffer = new Float64Array($response.bodyBytes);
 let body;
 
 if (url.indexOf("frs/page") != -1 && method == postMethod) {
     console.log('贴吧-FrsPage');
     let FrsPageResIdl = tiebaRoot.lookupType("com.smile.tieba.model.frs.FrsPageResIdl");
-    let FrsPageResIdlJsonObj = FrsPageResIdl.decode(uint8Buffer).toJSON();
+    let FrsPageResIdlJsonObj = FrsPageResIdl.decode(arrayBuffer).toJSON();
     if(FrsPageResIdlJsonObj.data.hasOwnProperty("threadList")){
         FrsPageResIdlJsonObj.data.threadList = removeLive(FrsPageResIdlJsonObj.data.threadList);
     }
@@ -29,7 +29,7 @@ if (url.indexOf("frs/page") != -1 && method == postMethod) {
 } else if (url.indexOf("pb/page") != -1 && method == postMethod) {
     console.log('贴吧-PbPage');
     let PbPageResIdl = tiebaRoot.lookupType("com.smile.tieba.model.pb.PbPageResIdl");
-    let PbPageResIdlJsonObj = PbPageResIdl.decode(uint8Buffer).toJSON();
+    let PbPageResIdlJsonObj = PbPageResIdl.decode(arrayBuffer).toJSON();
     if(PbPageResIdlJsonObj.data.hasOwnProperty("postList")){
         let postList = PbPageResIdlJsonObj.data.postList;
         for(let i = 0; i < postList.length; i++){
@@ -50,7 +50,7 @@ if (url.indexOf("frs/page") != -1 && method == postMethod) {
 } else if (url.indexOf("excellent/personalized") != -1 && method == postMethod) {
     console.log('贴吧-personalized');
     let PersonalizedResIdl = tiebaRoot.lookupType("com.smile.tieba.model.personalized.PersonalizedResIdl");
-    let PersonalizedResIdlJsonObj = PersonalizedResIdl.decode(uint8Buffer).toJSON();
+    let PersonalizedResIdlJsonObj = PersonalizedResIdl.decode(arrayBuffer).toJSON();
     if(PersonalizedResIdlJsonObj.data.hasOwnProperty("threadList")){
         PersonalizedResIdlJsonObj.data.threadList = removeLive(PersonalizedResIdlJsonObj.data.threadList);
     }
