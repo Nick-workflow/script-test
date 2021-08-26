@@ -15,7 +15,7 @@ const url = $request.url;
 const method = $request.method;
 const notifiTitle = "贴吧proto去广告脚本错误";
 const postMethod = "POST";
-let arrayBuffer = new Float64Array($response.bodyBytes);
+let arrayBuffer = new DataView($response.bodyBytes);
 let body;
 
 if (url.indexOf("frs/page") != -1 && method == postMethod) {
