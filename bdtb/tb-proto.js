@@ -60,7 +60,7 @@ if (url.indexOf("frs/page") != -1 && method == postMethod) {
     $notify(notifiTitle, "路径/请求方法匹配错误:", method + "," + url);
 }
 
-$done(body);
+$done({bodyBytes: body.buffer});
 
 
 function removeLive(threadList) {
